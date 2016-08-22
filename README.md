@@ -1,2 +1,2 @@
-# nodejs-skylog
+# node-chillog
 Logging Library NodeJS

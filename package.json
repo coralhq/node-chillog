@@ -1,0 +1,29 @@
+{
+  "name": "node-chillog",
+  "version": "0.1.0",
+  "description": "Gelf log formatter for nodeJS and print out to console.",
+  "main": "gelf.js",
+  "scripts": {
+    "test": "./node_modules/.bin/istanbul cover _mocha"
+  },
+  "keywords": [
+    "gelf",
+    "log",
+    "logging"
+  ],
+  "author": "lagilaper <pengen.makan.nasi@gmail.com>",
+  "contributors": [
+    { "name": "lagilaper", "email": "pengen.makan.nasi@gmail.com" }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coralhq/node-chillog.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
+    "test-console": "^1.0.0"
+  }
+}
