@@ -1,7 +1,7 @@
 var os   = require("os"),
     util = require('util');
 
-var gelf = function(config){
+var chillog = function(config){
   if (typeof(config) === 'object') {
     this.hostname = config.hostname || os.hostname();
     this.version  = config.version || 1;
@@ -12,8 +12,7 @@ var gelf = function(config){
 };
 
 // Level equal to the standard syslog levels
-gelf.prototype.level = {
-  EMERGENCY:  0,  // Emergency: System is unusable.
+chillog.prototype.level = {
   ALERT:      1,  // Alert: Action must be taken immediately.
   CRITICAL:   2,  // Critical: Critical conditions.
   ERROR:      3,  // Error: Error conditions
@@ -23,43 +22,40 @@ gelf.prototype.level = {
   DEBUG:      7   // Debug: Debug-level messages
 };
 
-gelf.prototype.emergency = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.EMERGENCY);
-};
 
-gelf.prototype.alert = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.alert = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.ALERT);
 };
 
-gelf.prototype.critical = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.critical = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.CRITICAL);
 };
 
-gelf.prototype.error = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.error = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.ERROR);
 };
 
-gelf.prototype.warning = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.warning = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.WARNING);
 };
 
-gelf.prototype.notice = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.notice = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.NOTICE);
 };
 
-gelf.prototype.info = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.info = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.INFO);
 };
 
-gelf.prototype.debug = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.debug = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.DEBUG);
 };
 
-gelf.prototype.log = function(shortMsg, fullMsg, additionalFields, timestamp) {
+chillog.prototype.log = function(shortMsg, fullMsg, additionalFields, timestamp) {
   return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.INFO);
 };
 
-gelf.prototype._log = function(shortMsg, fullMsg, additionalFields, timestamp, level) {
+chillog.prototype._log = function(shortMsg, fullMsg, additionalFields, timestamp, level) {
   var message = this._format(shortMsg, fullMsg, additionalFields, timestamp, level);
   if (level <= this.level.NOTICE) {
     process.stderr.write(util.format(message) + '\n');
@@ -69,7 +65,7 @@ gelf.prototype._log = function(shortMsg, fullMsg, additionalFields, timestamp, l
 };
 
 // Log message based on gelf 1.1 format
-gelf.prototype._format = function(shortMsg, fullMsg, additionalFields, timestamp, level){
+chillog.prototype._format = function(shortMsg, fullMsg, additionalFields, timestamp, level){
   var message = {
     version: this.version,
     hostname: this.hostname,
@@ -108,8 +104,8 @@ gelf.prototype._format = function(shortMsg, fullMsg, additionalFields, timestamp
 };
 
 // Get current timestamp in milliseconds
-gelf.prototype._get_timestamp = function(){
+chillog.prototype._get_timestamp = function(){
   return new Date().getTime();
 };
 
-module.exports = gelf;
+module.exports = chillog;
