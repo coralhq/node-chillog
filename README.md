@@ -33,8 +33,7 @@ Node-Chillog implements stdout logging and loosely follow Gelf RFC. This has bee
 
 ### Short message and long message logging
 ```javascript
-  logger.critical("critical... short message", "critical... long message here.
-  some backtraces stuff")
+  logger.critical("critical... short message", "critical... long message here. some backtraces stuff")
 ```
 
 ### Short message logging with additional JSON data
@@ -44,6 +43,5 @@ Node-Chillog implements stdout logging and loosely follow Gelf RFC. This has bee
 
 ### Short message and long message logging with additional JSON data
 ```javascript
-  logger.notice("notice... short message", "notice... long story short. you
-  might need to notice this" { user_id: 42 })
+  logger.notice("notice... short message", "notice... long story short. you might need to notice this" { user_id: 42 })
 ```
