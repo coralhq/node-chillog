@@ -2,15 +2,15 @@
   "name": "node-chillog",
   "version": "0.1.0",
   "description": "Gelf log formatter for nodeJS and print out to console.",
-  "main": "gelf.js",
+  "main": "chillog.js",
   "scripts": {
     "test": "./node_modules/.bin/istanbul cover _mocha"
   },
   "keywords": [
-    "gelf",
     "log",
     "logging"
   ],
+  "dependencies": {},
   "author": "lagilaper <pengen.makan.nasi@gmail.com>",
   "contributors": [
     { "name": "lagilaper", "email": "pengen.makan.nasi@gmail.com" }
