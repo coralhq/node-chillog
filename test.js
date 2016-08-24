@@ -35,7 +35,7 @@ describe('Chillog', function(done){
     var chillog = new Chillog({
       hostname: "test"
     });
-    var message = chillog._format("short", "full", undefined, undefined, chillog.level.ALERT);
+    var message = chillog._format("short", "full", undefined, chillog.level.ALERT);
     expect(message.short_message).to.equal("short");
     expect(message.full_message).to.equal("full");
     expect(message.version).to.equal(1);
@@ -49,7 +49,7 @@ describe('Chillog', function(done){
     var chillog = new Chillog({
       hostname: "test"
     });
-    var message = chillog._format("short", { data: "data" }, undefined, undefined, chillog.level.ALERT);
+    var message = chillog._format("short", { data: "data" }, undefined, chillog.level.ALERT);
     expect(message.short_message).to.equal("short");
     expect(message.full_message).to.equal("short");
     expect(message._data).to.equal("data");
@@ -70,7 +70,7 @@ describe('Chillog', function(done){
       stack: 'stack'
     };
 
-    var message = chillog._format(error, undefined, undefined, undefined, chillog.level.ALERT);
+    var message = chillog._format(error, undefined, undefined, chillog.level.ALERT);
     expect(message.short_message).to.equal("message");
     expect(message.full_message).to.equal("stack");
     expect(message.version).to.equal(1);
@@ -89,7 +89,7 @@ describe('Chillog', function(done){
       data: 'data'
     };
 
-    var message = chillog._format(data, undefined, undefined, undefined, chillog.level.ALERT);
+    var message = chillog._format(data, undefined, undefined, chillog.level.ALERT);
     expect(message.short_message).to.equal(JSON.stringify(data));
     expect(message.full_message).to.equal(JSON.stringify(data));
     expect(message.version).to.equal(1);
@@ -108,7 +108,7 @@ describe('Chillog', function(done){
       id: 'test'
     };
 
-    var message = chillog._format("short", "full", data, undefined, chillog.level.ALERT);
+    var message = chillog._format("short", "full", data, chillog.level.ALERT);
     expect(message.short_message).to.equal("short");
     expect(message.full_message).to.equal("full");
     expect(message.version).to.equal(1);
@@ -127,13 +127,13 @@ describe('Chillog', function(done){
     };
 
     var output = stderr.inspectSync(function(){
-      chillog.alert("short", "full", data, undefined);
+      chillog.alert("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stdout.inspectSync(function(){
-      chillog.alert("short", "full", data, undefined);
+      chillog.alert("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -146,13 +146,13 @@ describe('Chillog', function(done){
     };
 
     var output = stderr.inspectSync(function(){
-      chillog.critical("short", "full", data, undefined);
+      chillog.critical("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stdout.inspectSync(function(){
-      chillog.critical("short", "full", data, undefined);
+      chillog.critical("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -165,13 +165,13 @@ describe('Chillog', function(done){
     };
 
     var output = stderr.inspectSync(function(){
-      chillog.error("short", "full", data, undefined);
+      chillog.error("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stdout.inspectSync(function(){
-      chillog.error("short", "full", data, undefined);
+      chillog.error("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -184,13 +184,13 @@ describe('Chillog', function(done){
     };
 
     var output = stderr.inspectSync(function(){
-      chillog.warning("short", "full", data, undefined);
+      chillog.warning("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stdout.inspectSync(function(){
-      chillog.warning("short", "full", data, undefined);
+      chillog.warning("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -203,13 +203,13 @@ describe('Chillog', function(done){
     };
 
     var output = stderr.inspectSync(function(){
-      chillog.notice("short", "full", data, undefined);
+      chillog.notice("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stdout.inspectSync(function(){
-      chillog.notice("short", "full", data, undefined);
+      chillog.notice("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -222,13 +222,13 @@ describe('Chillog', function(done){
     };
 
     var output = stdout.inspectSync(function(){
-      chillog.info("short", "full", data, undefined);
+      chillog.info("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stderr.inspectSync(function(){
-      chillog.info("short", "full", data, undefined);
+      chillog.info("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -241,13 +241,13 @@ describe('Chillog', function(done){
     };
 
     var output = stdout.inspectSync(function(){
-      chillog.debug("short", "full", data, undefined);
+      chillog.debug("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stderr.inspectSync(function(){
-      chillog.debug("short", "full", data, undefined);
+      chillog.debug("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });
@@ -260,13 +260,13 @@ describe('Chillog', function(done){
     };
 
     var output = stdout.inspectSync(function(){
-      chillog.log("short", "full", data, undefined);
+      chillog.log("short", "full", data);
 
     });
     expect(output.length).to.equal(1);
 
     output = stderr.inspectSync(function(){
-      chillog.log("short", "full", data, undefined);
+      chillog.log("short", "full", data);
     });
     expect(output.length).to.equal(0);
   });

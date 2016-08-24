@@ -23,40 +23,40 @@ chillog.prototype.level = {
 };
 
 
-chillog.prototype.alert = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.ALERT);
+chillog.prototype.alert = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.ALERT);
 };
 
-chillog.prototype.critical = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.CRITICAL);
+chillog.prototype.critical = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.CRITICAL);
 };
 
-chillog.prototype.error = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.ERROR);
+chillog.prototype.error = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.ERROR);
 };
 
-chillog.prototype.warning = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.WARNING);
+chillog.prototype.warning = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.WARNING);
 };
 
-chillog.prototype.notice = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.NOTICE);
+chillog.prototype.notice = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.NOTICE);
 };
 
-chillog.prototype.info = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.INFO);
+chillog.prototype.info = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.INFO);
 };
 
-chillog.prototype.debug = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.DEBUG);
+chillog.prototype.debug = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.DEBUG);
 };
 
-chillog.prototype.log = function(shortMsg, fullMsg, additionalFields, timestamp) {
-  return this._log(shortMsg, fullMsg, additionalFields, timestamp, this.level.INFO);
+chillog.prototype.log = function(shortMsg, fullMsg, additionalFields) {
+  return this._log(shortMsg, fullMsg, additionalFields, this.level.INFO);
 };
 
-chillog.prototype._log = function(shortMsg, fullMsg, additionalFields, timestamp, level) {
-  var message = this._format(shortMsg, fullMsg, additionalFields, timestamp, level);
+chillog.prototype._log = function(shortMsg, fullMsg, additionalFields, level) {
+  var message = this._format(shortMsg, fullMsg, additionalFields, level);
   if (level <= this.level.NOTICE) {
     process.stderr.write(util.format(message) + '\n');
   } else {
@@ -65,11 +65,11 @@ chillog.prototype._log = function(shortMsg, fullMsg, additionalFields, timestamp
 };
 
 // Log message based on gelf 1.1 format
-chillog.prototype._format = function(shortMsg, fullMsg, additionalFields, timestamp, level){
+chillog.prototype._format = function(shortMsg, fullMsg, additionalFields, level){
   var message = {
     version: this.version,
     hostname: this.hostname,
-    timestamp: timestamp || this._get_timestamp(),
+    timestamp: this._get_timestamp(),
     level: level
   },
   field = '';
