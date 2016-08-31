@@ -22,6 +22,15 @@ describe('Chillog', function(done){
     expect(chillog.hostname).to.equal('test');
   });
 
+  it('should be an instance of Chillog with provided version and service', function(){
+    var chillog = new Chillog({
+      version: 2,
+      service: 'test'
+    });
+    expect(chillog.version).to.equal(2);
+    expect(chillog.service).to.equal('test');
+  });
+
   it('should be able to get current timestamp', function(){
     // this test will assume that timestamp generated with value > 1 August 2016 and length 13
     var chillog = new Chillog();
@@ -98,7 +107,7 @@ describe('Chillog', function(done){
     expect(message.timestamp).not.empty;
   });
 
-  it('should be able to get expected format with _id changed to _log_id', function(){
+  it('should be able to get expected format with _id changed to __id', function(){
     // this test will assume that timestamp generated with value > 1 August 2016 and length 13
     var chillog = new Chillog({
       hostname: "test"
@@ -114,7 +123,7 @@ describe('Chillog', function(done){
     expect(message.version).to.equal(1);
     expect(message.hostname).to.equal("test");
     expect(message._id).to.empty;
-    expect(message._log_id).to.equal("test");
+    expect(message.__id).to.equal("test");
     expect(message.level).to.equal(1);
     expect(message.timestamp).not.empty;
   });

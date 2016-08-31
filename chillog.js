@@ -5,9 +5,11 @@ var chillog = function(config){
   if (typeof(config) === 'object') {
     this.hostname = config.hostname || os.hostname();
     this.version  = config.version || 1;
+    this.service  = config.service || process.env.SERVICE_NAME;
   } else {
     this.hostname = os.hostname();
     this.version = 1;
+    this.service = process.env.SERVICE_NAME;
   }
 };
 
@@ -70,7 +72,8 @@ chillog.prototype._format = function(shortMsg, fullMsg, additionalFields, level)
     version: this.version,
     hostname: this.hostname,
     timestamp: this._get_timestamp(),
-    level: level
+    level: level,
+    service: this.service
   },
   field = '';
 
@@ -94,9 +97,9 @@ chillog.prototype._format = function(shortMsg, fullMsg, additionalFields, level)
   }
 
   // Libraries SHOULD not allow to send id as additional field (_id)
-  // http://docs.graylog.org/en/2.0/pages/gelf.html#gelf-format-specification
+  // _id is a reserved field name
   if (message._id) {
-    message._log_id = message._id;
+    message.__id = message._id;
     delete message._id;
   }
 
