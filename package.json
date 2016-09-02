@@ -4,7 +4,7 @@
   "description": "Gelf log formatter for nodeJS and print out to console.",
   "main": "chillog.js",
   "scripts": {
-    "test": "JUNIT_REPORT_PATH=test-results/result.xml JUNIT_REPORT_STACK=1 istanbul cover --report cobertura _mocha -- --timeout 60000 --reporter mocha-jenkins-reporter || true"
+    "test": "JUNIT_REPORT_PATH=test-results/results.xml JUNIT_REPORT_STACK=1 istanbul cover --report cobertura _mocha -- --timeout 60000 --reporter mocha-jenkins-reporter || true"
   },
   "keywords": [
     "log",
