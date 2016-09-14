@@ -1,0 +1,8 @@
+verbose: false
+reporting:
+    reports:
+        - cobertura
+    dir: ./test-results
+    report-config:
+      cobertura:
+        file: 'coverage.xml'

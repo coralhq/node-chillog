@@ -1,0 +1,35 @@
+{
+  "name": "node-chillog",
+  "version": "0.1.0",
+  "description": "Gelf log formatter for nodeJS and print out to console.",
+  "main": "chillog.js",
+  "scripts": {
+    "test": "JUNIT_REPORT_PATH=test-results/results.xml JUNIT_REPORT_STACK=1 istanbul cover --report cobertura _mocha -- --timeout 60000 --reporter mocha-jenkins-reporter || true"
+  },
+  "keywords": [
+    "log",
+    "logging"
+  ],
+  "dependencies": {},
+  "author": "lagilaper <pengen.makan.nasi@gmail.com>",
+  "contributors": [
+    {
+      "name": "lagilaper",
+      "email": "pengen.makan.nasi@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/coralhq/node-chillog.git"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^3.0.2",
+    "mocha-jenkins-reporter": "^0.2.6",
+    "sinon": "^1.17.5",
+    "sinon-chai": "^2.8.0",
+    "test-console": "^1.0.0"
+  }
+}
