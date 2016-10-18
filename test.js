@@ -58,7 +58,19 @@ describe('Chillog', function(done){
     var chillog = new Chillog({
       hostname: "test"
     });
-    var message = chillog._format("short", { data: "data" }, undefined, chillog.level.ALERT);
+    var nested = {
+      data: "data",
+      one: {
+        two: {
+          three: {
+            four: {
+              message: "deep"
+            }
+          }
+        }
+      }
+    }
+    var message = chillog._format("short", nested, undefined, chillog.level.ALERT);
     expect(message.short_message).to.equal("short");
     expect(message.full_message).to.equal("short");
     expect(message._data).to.equal("data");
@@ -264,18 +276,27 @@ describe('Chillog', function(done){
   it('should be able to print to stdout in LOG log and not stderr', function(){
     var chillog = new Chillog();
 
-    var data = {
-      id: 'test'
-    };
+    var nested = {
+      data: "data",
+      one: {
+        two: {
+          three: {
+            four: {
+              message: "deep"
+            }
+          }
+        }
+      }
+    }
 
     var output = stdout.inspectSync(function(){
-      chillog.log("short", "full", data);
+      chillog.log("short", "full", nested);
 
     });
     expect(output.length).to.equal(1);
 
     output = stderr.inspectSync(function(){
-      chillog.log("short", "full", data);
+      chillog.log("short", "full", nested);
     });
     expect(output.length).to.equal(0);
   });

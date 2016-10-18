@@ -60,9 +60,9 @@ chillog.prototype.log = function(shortMsg, fullMsg, additionalFields) {
 chillog.prototype._log = function(shortMsg, fullMsg, additionalFields, level) {
   var message = this._format(shortMsg, fullMsg, additionalFields, level);
   if (level <= this.level.NOTICE) {
-    process.stderr.write(util.format(message) + '\n');
+    process.stderr.write(util.inspect(message, { depth: 5, colors: false }) + '\n');
   } else {
-    process.stdout.write(util.format(message) + '\n');
+    process.stdout.write(util.inspect(message, { depth: 5, colors: false }) + '\n');
   }
 };
 
