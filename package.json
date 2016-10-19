@@ -1,6 +1,6 @@
 {
   "name": "node-chillog",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Gelf log formatter for nodeJS and print out to console.",
   "main": "chillog.js",
   "scripts": {
